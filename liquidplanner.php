@@ -373,6 +373,24 @@ class LiquidPlanner
         return ($response);
     }
 
+
+    /**
+     * Creates a new tag in Liquid Planner
+     *
+     * @param  array $data Values to apply to the newly created tag
+     *
+     * @return array  Response from Liquid Planner
+     *
+     * @access public
+     */
+    public function tags_create($liquidTaskId, array $data)
+    {
+        $encodedAssignment = json_encode(array($data));
+        $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/tags';
+        $response = $this->lp_post($url, $encodedAssignment);
+        return ($response);
+    }
+
     /**************************************************************/
 
     public function clients_dependencies(array $data, $id = NULL)
