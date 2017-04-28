@@ -1,6 +1,5 @@
 <?php
 
-namespace LiquidPlanner;
 /**
  * Class LiquidPlanner
  * Forked from https://github.com/jonoxer/php-liquidplanner
