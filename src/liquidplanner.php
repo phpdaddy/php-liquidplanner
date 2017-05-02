@@ -367,7 +367,7 @@ class LiquidPlanner
      */
     public function assignments_create($liquidTaskId, array $data)
     {
-        $encodedAssignment = json_encode(array($data));
+        $encodedAssignment = json_encode($data);
         $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/update_assignment';
         $response = $this->lp_post($url, $encodedAssignment);
         return ($response);
@@ -385,7 +385,7 @@ class LiquidPlanner
      */
     public function tags_create($liquidTaskId, array $data)
     {
-        $encodedAssignment = json_encode(array($data));
+        $encodedAssignment = json_encode($data);
         $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/tags';
         $response = $this->lp_post($url, $encodedAssignment);
         return ($response);
