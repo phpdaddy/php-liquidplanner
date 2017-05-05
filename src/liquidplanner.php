@@ -374,6 +374,20 @@ class LiquidPlanner
     }
 
     /**
+     * Retrieves assignments
+     *
+     * @return array  Response from Liquid Planner
+     *
+     * @access public
+     */
+    public function assignments($liquidTaskId)
+    {
+        $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/assignments/';
+        $response = $this->lp_get($url);
+        return ($response);
+    }
+
+    /**
      * Removes all assigments from task
      *
      * @return array  Response from Liquid Planner
@@ -382,8 +396,12 @@ class LiquidPlanner
      */
     public function assignments_clear($liquidTaskId)
     {
-        $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/assignments/' . $liquidTaskId;
-        $response = $this->lp_delete($url);
+        $assignments = $this->assignments($liquidTaskId);
+        $response = [];
+        foreach ($assignments as $assignment) {
+            $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/assignments/' . $assignment['id'];
+            $response[] = $this->lp_delete($url);
+        }
         return ($response);
     }
 
