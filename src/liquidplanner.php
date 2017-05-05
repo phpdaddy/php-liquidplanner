@@ -373,6 +373,20 @@ class LiquidPlanner
         return ($response);
     }
 
+    /**
+     * Removes all assigments from task
+     *
+     * @return array  Response from Liquid Planner
+     *
+     * @access public
+     */
+    public function assignments_clear($liquidTaskId)
+    {
+        $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/assignments/' . $liquidTaskId;
+        $response = $this->lp_delete($url);
+        return ($response);
+    }
+
 
     /**
      * Creates a new tag in Liquid Planner
@@ -385,9 +399,9 @@ class LiquidPlanner
      */
     public function tags_create($liquidTaskId, array $data)
     {
-        $encodedAssignment = json_encode($data);
+        $encodedTag = json_encode($data);
         $url = $this->serviceurl . '/tasks/' . $liquidTaskId . '/tags';
-        $response = $this->lp_post($url, $encodedAssignment);
+        $response = $this->lp_post($url, $encodedTag);
         return ($response);
     }
 
